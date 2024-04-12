@@ -19,7 +19,7 @@ function App() {
       <h1>Workintech + 🍕</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
-          Absolute Acı Pizza sayısı [Aksel]{count}
+          Absolute Acı Pizza sayısı [Aksel2]{count}
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
