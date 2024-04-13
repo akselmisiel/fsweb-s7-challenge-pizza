@@ -4,7 +4,7 @@ import backgroundImage from '/Assets/mile1-assets/home-banner.png';
 export const HomeContainer = styled.div`
   background-image: url(${backgroundImage});
   background-size: cover; 
-  background-position: center center; 
+  background-position: center;
   height: 100vh;
   width: 100vw;
   display: flex;

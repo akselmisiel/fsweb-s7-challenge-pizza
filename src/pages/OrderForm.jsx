@@ -1,10 +1,11 @@
 import React from 'react';
 import { FormContainer, FormTitle, FormSection, Label, Input, Select, CheckBoxContainer, SubmitButton, OrderSummary } from './OrderForm.styles.jsx';
-
+import { Header } from '../components/Header.jsx';
 const PizzaOrderForm = () => {
     // Form state and handlers would go here
     return (
         <FormContainer>
+            <Header />
             <FormTitle>Position Absolute Acı Pizza</FormTitle>
             <form>
                 {/* Pizza Size Selection */}

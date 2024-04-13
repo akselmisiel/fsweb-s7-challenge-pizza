@@ -4,13 +4,8 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  background-color: #fff; // Adjust according to your color scheme
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: -100px; // This will help overlap over the header if that's the design you want
-  width: 80%;
-  max-width: 800px;
+  justify-content: center;
+  background-color: #fff; 
 `;
 
 export const FormTitle = styled.h2`
