@@ -10,6 +10,7 @@ export const HeaderContainer = styled.div`
     flex-direction: column;
     text-align: center;
     top: 0;
+    position: absolute;
 `;
 
 export const HeaderText = styled.h1`
