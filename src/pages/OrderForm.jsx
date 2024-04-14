@@ -5,7 +5,6 @@ const PizzaOrderForm = () => {
     // Form state and handlers would go here
     return (
         <FormContainer>
-            <Header />
             <FormTitle>Position Absolute Acı Pizza</FormTitle>
             <form>
                 {/* Pizza Size Selection */}

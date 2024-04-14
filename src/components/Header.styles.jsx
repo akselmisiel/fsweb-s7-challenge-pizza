@@ -7,7 +7,10 @@ export const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
+    position: fixed;
+    top: 0;
 `;
 
 export const HeaderText = styled.h1`
@@ -17,4 +20,15 @@ export const HeaderText = styled.h1`
     text-align: center;
     font-family: 'Londrina Solid', sans-serif;
     padding-bottom: 30px;
+`;
+
+export const HeaderNav = styled.nav`
+    display: flex;
+    justify-content: bottom;
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0px 3px;
+    }
+    ;
 `;
