@@ -11,15 +11,20 @@ import { Header } from './components/Header.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <>
   <BrowserRouter>
-    <Header active={location.pathname === "/order" ? "order" : "homepage"} />
     <Switch>
       <Route path="/" exact>
       <HomePage />
       </Route>
+      <Route path="/options">
+      <Header />
+      </Route>
       <Route path="/order">
+      <Header />
       <OrderForm />
       </Route>
     </Switch>
   </BrowserRouter>
+  </>
 );

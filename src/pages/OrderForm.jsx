@@ -1,49 +1,49 @@
 import React from 'react';
-import { FormContainer, FormTitle, FormSection, Label, Input, Select, CheckBoxContainer, SubmitButton, OrderSummary } from './OrderForm.styles.jsx';
+import { FormContainer, FormTitle, FormSection, Label, Input, Select, CheckBoxContainer, SubmitButton, OrderSummary, Price, FormDescription, FormRadio, SelectionTitle } from './OrderForm.styles.jsx';
 import { Header } from '../components/Header.jsx';
+
 const PizzaOrderForm = () => {
     // Form state and handlers would go here
+
     return (
         <FormContainer>
             <FormTitle>Position Absolute Acı Pizza</FormTitle>
+            <Price>₺ 25.00</Price>
+            <FormDescription>Frontent Dev olarak hala position:absolute kullamyorsan bu cok acı pizza tam sana
+göre. Pizza, domates, peynir ve genellikle çesitli diger malzemelerle kaplanmış, daha
+sonra geleneksel olarak odun atesinde bir fırında yüksek sıcaklıkta pişirilen,
+genellikle yuvarlak, düzlestirilmis mayall buğday bazlı hamurdan olusan italyan
+kökenli lezzetli bir yemektir.. Küçük bir pizzaya bazen pizzetta denir.</FormDescription>
             <form>
-                {/* Pizza Size Selection */}
                 <FormSection>
-                    <Label>Boyut Seç *</Label>
-                    <Select name="size">
-                        <option value="small">Küçük</option>
-                        <option value="medium">Orta</option>
-                        <option value="large">Büyük</option>
-                    </Select>
+                    <SelectionTitle>Boyut Seç *</SelectionTitle>
+                    <FormRadio type="radio" id="small" name="boyut" value="Küçük" />
+                    <Label htmlFor="small">Küçük</Label><br></br>
+                    <FormRadio type="radio" id="medium" name="boyut" value="Orta" />
+                    <Label htmlFor="medium">Orta</Label><br></br>
+                    <FormRadio type="radio" id="big" name="boyut" value="Büyük" />
+                    <Label htmlFor="big">Büyük</Label><br></br>
                 </FormSection>
                 
-                {/* More form sections for crust type, toppings, etc. */}
+                <FormSection>
+                    <Label>Hamur Seç *</Label>
+                    <Select name="crust">
+                        {/* Options for crust types */}
+                    </Select>
+                </FormSection>
 
-                {/* Toppings Selection */}
                 <FormSection>
                     <Label>Ek Malzemeler</Label>
                     <CheckBoxContainer>
-                        {/* Map over toppings and create checkboxes */}
-                        <Label>
-                            <Input type="checkbox" name="toppings" value="pepperoni" /> Pepperoni
-                        </Label>
+                        <Label><Input type="checkbox" name="toppings" value="pepperoni" /> Pepperoni</Label>
+                        <Label><Input type="checkbox" name="toppings" value="tomatoes" /> Domates</Label>
+                        <Label><Input type="checkbox" name="toppings" value="onions" /> Soğan</Label>
                         {/* Repeat for other toppings */}
                     </CheckBoxContainer>
                 </FormSection>
 
-                {/* Special Instructions */}
-                <FormSection>
-                    <Label>Sipariş Notu</Label>
-                    <textarea placeholder="Siparişinize eklemek istediğiniz bir not var mı?" />
-                </FormSection>
-
-                {/* Order Summary */}
-                <OrderSummary>
-                    {/* Calculate and display order total */}
-                    <p>Sipariş Toplamı: 25.00₺</p>
-                </OrderSummary>
-
-                {/* Submit Button */}
+                {/* Special Instructions and Order Summary can be added here */}
+                
                 <SubmitButton type="submit">SİPARİŞ VER</SubmitButton>
             </form>
         </FormContainer>

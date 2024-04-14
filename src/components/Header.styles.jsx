@@ -9,7 +9,6 @@ export const HeaderContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    position: fixed;
     top: 0;
 `;
 
