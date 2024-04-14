@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FormContainer = styled.div`
   display: flex;
@@ -8,18 +8,18 @@ export const FormContainer = styled.div`
   margin: auto;
   width: 100%; 
   padding-top: 2rem;
-  max-width: 650px; 
+  max-width: 650px;
   max height: 800px;
 `;
 
 export const Price = styled.h1`
   margin-top: 0;
   margin-bottom: 0;
-`
+`;
 
 export const FormTitle = styled.h2`
   color: #333; // Replace with the color of your choice
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-size: 1.5rem;
   margin-top: 5rem;
 `;
@@ -29,9 +29,16 @@ export const FormRadio = styled.input`
   margin-bottom: -15px;
 `;
 
-export const FormSection = styled.section`
+export const FormSection = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+`;
+
+export const FormSection2 = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 100%;
   margin-bottom: 1rem;
 `;
@@ -40,7 +47,7 @@ export const SelectionTitle = styled.h3`
   color: #333;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  `
+`;
 
 export const FormDescription = styled.p`
   color: #333;
@@ -64,7 +71,7 @@ export const Input = styled.input`
 `;
 
 export const Select = styled.select`
-  width: 100%; 
+  width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -88,7 +95,7 @@ export const OrderNote = styled.textarea`
 `;
 
 export const SubmitButton = styled.button`
-  background-color: #FDC913; // Adjust to match the color in the image
+  background-color: #fdc913; // Adjust to match the color in the image
   color: #000; // Text color
   border: none;
   font-size: 1em;
@@ -97,7 +104,7 @@ export const SubmitButton = styled.button`
   text-transform: uppercase;
   width: 100%; // Make button fill its container
   padding: 1rem; // Increase padding for bigger appearance
-  border-radius: 4px;// Make button full width
+  border-radius: 4px; // Make button full width
   &:hover {
     background-color: #e0a800; // Darker shade for hover state
   }
@@ -108,6 +115,9 @@ export const OrderSummary = styled.div`
   justify-content: space-between; // Adjust to layout the summary like in the image
   align-items: center;
   font-weight: bold; // If summary text is bold
-  width: 100%;
+  width: 200px;
   padding: 0.75rem 0; // Adjust padding as needed
+  justify-content: center;
+  border: 1px solid #ccc; // Add border for definition
+  border-radius: 20px; // Slight rounding of corners
 `;

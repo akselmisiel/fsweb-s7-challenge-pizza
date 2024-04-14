@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import backgroundImage from '/Assets/mile1-assets/home-banner.png'; 
+import styled from "styled-components";
+import backgroundImage from "/Assets/mile1-assets/home-banner.png";
 
 export const HomeContainer = styled.div`
   background-image: url(${backgroundImage});
-  background-size: cover; 
+  background-size: cover;
   background-position: center;
   height: 100vh;
   width: 100vw;
@@ -16,7 +16,7 @@ export const HomeContainer = styled.div`
 
 export const Title = styled.h1`
   font-size: 2.2rem;
-  font-family: 'Londrina Solid', sans-serif;
+  font-family: "Londrina Solid", sans-serif;
   margin: 0;
   padding: 120px 0px 65px 0px;
   letter-spacing: 2px;
@@ -24,7 +24,7 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.h2`
   font-size: 3rem;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   font-weight: 100;
   margin: 0;
 `;

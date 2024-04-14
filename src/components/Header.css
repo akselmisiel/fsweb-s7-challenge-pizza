@@ -1,9 +1,9 @@
 .nav {
-    color: rgba(255, 255, 253, 0.493);
+  color: rgba(255, 255, 253, 0.493);
 }
 a {
-    text-decoration: none;
-    color: rgba(255, 255, 253, 0.493);
+  text-decoration: none;
+  color: rgba(255, 255, 253, 0.493);
 }
 /* a::after {
     content: " - ";
@@ -11,8 +11,8 @@ a {
 }
 */
 a:hover {
-    color: rgb(255, 255, 253);
+  color: rgb(255, 255, 253);
 }
 .activeNav {
-    color: rgb(255, 255, 253);
+  color: rgb(255, 255, 253);
 }
