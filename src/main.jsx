@@ -7,6 +7,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import OrderForm from "./pages/OrderForm";
 import { Switch } from "react-router-dom";
 import { Header } from "./components/Header.jsx";
+import ConfirmPage from "./pages/ConfirmPage.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +23,10 @@ root.render(
         <Route path="/order">
           <Header />
           <OrderForm />
+        </Route>
+        <Route path="/confirm">
+          <Header />
+          <ConfirmPage />
         </Route>
       </Switch>
     </BrowserRouter>

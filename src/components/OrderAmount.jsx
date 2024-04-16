@@ -30,25 +30,31 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const OrderAmountAdjuster = ({ initialCount = 1, minCount = 1 }) => {
-  const [count, setCount] = useState(initialCount);
-
-  const handleIncrement = () => {
-    setCount((prevCount) => prevCount + 1);
+const OrderAmountAdjuster = ({ orderAmount, setForm }) => {
+  const handleIncrement = (e) => {
+    e.preventDefault();
+    setForm((prevCount) => ({
+      ...prevCount,
+      amount: prevCount.amount + 1,
+    }));
   };
 
-  const handleDecrement = () => {
-    if (count > minCount) {
-      setCount((prevCount) => prevCount - 1);
+  const handleDecrement = (e) => {
+    e.preventDefault();
+    if (orderAmount > 1) {
+      setForm((prevCount) => ({
+        ...prevCount,
+        amount: prevCount.amount - 1,
+      }));
     }
   };
 
   return (
     <AdjusterContainer>
-      <Button onClick={handleDecrement} disabled={count <= minCount}>
+      <Button onClick={handleDecrement} disabled={orderAmount <= 1}>
         -
       </Button>
-      <Span>{count}</Span>
+      <Span>{orderAmount}</Span>
       <Button onClick={handleIncrement}>+</Button>
     </AdjusterContainer>
   );
