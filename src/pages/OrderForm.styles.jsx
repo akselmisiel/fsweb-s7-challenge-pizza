@@ -101,17 +101,24 @@ export const OrderNote = styled.textarea`
   resize: none;
 `;
 
+export const SummarySection = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 1rem;
+`;
+
 export const SubmitButton = styled.button`
   background-color: #fdc913;
   color: #000;
   border: none;
   font-size: 1em;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 0px;
   text-transform: uppercase;
   width: 100%;
   padding: 1rem;
-  border-radius: 4px;
+  border-radius: 20px;
   &:hover {
     background-color: #e0a800;
   }
@@ -120,12 +127,14 @@ export const OrderSummary = styled.div`
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   font-weight: bold;
-  width: 200px;
-  padding: 0.75rem 0;
-  justify-content: center;
+  width: 400px;
+  padding: 0rem 0;
+  justify-content: left;
   border: 1px solid #ccc;
   border-radius: 20px;
   margin-left: auto;
+  margin-bottom: 0;
 `;

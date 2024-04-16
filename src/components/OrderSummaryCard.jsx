@@ -1,17 +1,20 @@
 import React from "react";
 
-const OrderSummaryCard = ({ size, toppings, totalPrice }) => {
+const OrderSummaryCard = ({ size, toppings, totalPrice, submitButton }) => {
   const calculateToppingsPrice = () => {
     return 8 * toppings.length;
   };
 
   return (
-    <div className="order-summary-card">
-      <h2>Order Summary</h2>
-      <p>Size: {size}</p>
-      <p>Extra Toppings: {calculateToppingsPrice()} TL</p>
-      <p>Total Price: {totalPrice} TL</p>
-    </div>
+    <>
+      <div>
+        <h2>Sipariş Özeti</h2>
+        <p>Boyut: {size}</p>
+        <p>Ek Malzemeler: {calculateToppingsPrice()} TL</p>
+        <p>Toplam Fiyat: {totalPrice} TL</p>
+      </div>
+      {submitButton}
+    </>
   );
 };
 

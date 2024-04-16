@@ -16,6 +16,7 @@ import {
   OrderNote,
   FormSection2,
   SizeSection,
+  SummarySection,
 } from "./OrderForm.styles.jsx";
 import { Header } from "../components/Header.jsx";
 import Checkbox from "../components/Checkbox.jsx";
@@ -25,7 +26,7 @@ import { useHistory } from "react-router-dom";
 
 const PizzaOrderForm = () => {
   const history = useHistory();
-  // Form state and handlers would go here
+
   const toppingsOptions = [
     { value: "pepperoni", label: "Pepperoni" },
     { value: "tomatoes", label: "Domates" },
@@ -45,11 +46,10 @@ const PizzaOrderForm = () => {
     crust: "",
     toppings: [],
     specialInstructions: "",
-    totalPrice: 25,
+    totalPrice: 85,
     amount: 1,
   });
 
-  // Handle changes in form inputs
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
     if (type === "checkbox") {
@@ -69,7 +69,7 @@ const PizzaOrderForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Submit logic or validation here
+
     history.push("/confirm");
     console.log(formData);
     setFormData({
@@ -77,7 +77,7 @@ const PizzaOrderForm = () => {
       crust: "",
       toppings: [],
       specialInstructions: "",
-      totalPrice: 25,
+      totalPrice: 85,
       amount: 1,
     });
   };
@@ -85,16 +85,16 @@ const PizzaOrderForm = () => {
     let price = formData.price;
     switch (formData.size) {
       case "Küçük":
-        price = 35;
+        price = 85;
         break;
       case "Orta":
-        price = 40;
+        price = 95;
         break;
       case "Büyük":
-        price = 45;
+        price = 110;
         break;
       default:
-        price = 35;
+        price = 85;
     }
 
     formData.crust === "ince" && (price += 0);
@@ -104,16 +104,18 @@ const PizzaOrderForm = () => {
     formData.toppings.forEach(() => {
       price += 8;
     });
+
+    price = price * formData.amount;
     setFormData((prevFormData) => ({
       ...prevFormData,
       totalPrice: price,
     }));
-  }, [formData.size, formData.crust, formData.toppings]);
+  }, [formData.size, formData.crust, formData.toppings, formData.amount]);
 
   return (
     <FormContainer>
       <FormTitle>Position Absolute Acı Pizza</FormTitle>
-      <Price>₺ 35.00</Price>
+      <Price>₺ 85.00</Price>
       <FormDescription>
         Frontent Dev olarak hala position:absolute kullamyorsan bu cok acı pizza
         tam sana göre. Pizza, domates, peynir ve genellikle çesitli diger
@@ -195,14 +197,18 @@ const PizzaOrderForm = () => {
             name="specialInstructions"
             value={formData.specialInstructions}
             onChange={handleChange}
+            placeholder="Siparişine eklemek istediğin bir not var mı?"
           />
         </FormSection>
-        <FormSection2>
+        <SummarySection>
           <OrderSummary>
             <OrderSummaryCard
               size={formData.size}
               toppings={formData.toppings}
-              totalPrice={formData.totalPrice * formData.amount}
+              totalPrice={formData.totalPrice}
+              submitButton={
+                <SubmitButton type="submit">SİPARİŞ VER</SubmitButton>
+              }
             />
           </OrderSummary>
 
@@ -210,8 +216,7 @@ const PizzaOrderForm = () => {
             orderAmount={formData.amount}
             setForm={setFormData}
           />
-        </FormSection2>
-        <SubmitButton type="submit">SİPARİŞ VER</SubmitButton>
+        </SummarySection>
       </form>
     </FormContainer>
   );
