@@ -23,6 +23,7 @@ import Checkbox from "../components/Checkbox.jsx";
 import OrderSummaryCard from "../components/OrderSummaryCard.jsx";
 import OrderAmountAdjuster from "../components/OrderAmount.jsx";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const PizzaOrderForm = () => {
   const history = useHistory();
@@ -50,15 +51,33 @@ const PizzaOrderForm = () => {
     amount: 1,
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
+
     if (type === "checkbox") {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        toppings: checked
-          ? [...prevFormData.toppings, value]
-          : prevFormData.toppings.filter((topping) => topping !== value),
-      }));
+      setFormData((prevFormData) => {
+        const currentToppings = prevFormData.toppings;
+        const isAlreadySelected = currentToppings.includes(value);
+
+        if (checked && !isAlreadySelected) {
+          if (currentToppings.length < 10) {
+            return {
+              ...prevFormData,
+              toppings: [...currentToppings, value],
+            };
+          }
+
+          return prevFormData;
+        } else if (!checked && isAlreadySelected) {
+          return {
+            ...prevFormData,
+            toppings: currentToppings.filter((topping) => topping !== value),
+          };
+        }
+        return prevFormData;
+      });
     } else {
       setFormData((prevFormData) => ({
         ...prevFormData,
@@ -69,9 +88,17 @@ const PizzaOrderForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     history.push("/confirm");
     console.log(formData);
+    axios
+      .post("https://reqres.in/api/users", formData)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
     setFormData({
       size: "",
       crust: "",
@@ -81,6 +108,30 @@ const PizzaOrderForm = () => {
       amount: 1,
     });
   };
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!formData.size) {
+      newErrors.size = "Boyut seçimi zorunludur";
+    }
+
+    if (!formData.crust) {
+      newErrors.crust = "Hamur seçimi zorunludur";
+    }
+
+    return newErrors;
+  };
+
+  const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const newErrors = validateForm();
+    setErrors(newErrors);
+    setIsValid(Object.keys(newErrors).length === 0);
+    console.log("errors", errors);
+  }, [formData]);
+
   useEffect(() => {
     let price = formData.price;
     switch (formData.size) {
@@ -115,7 +166,7 @@ const PizzaOrderForm = () => {
   return (
     <FormContainer>
       <FormTitle>Position Absolute Acı Pizza</FormTitle>
-      <Price>₺ 85.00</Price>
+      <Price>₺ {formData.totalPrice.toFixed(2)}</Price>
       <FormDescription>
         Frontent Dev olarak hala position:absolute kullamyorsan bu cok acı pizza
         tam sana göre. Pizza, domates, peynir ve genellikle çesitli diger
@@ -159,6 +210,7 @@ const PizzaOrderForm = () => {
             />
             <Label htmlFor="big">Büyük</Label>
             <br></br>
+            {errors.size && <div style={{ color: "red" }}>{errors.size}</div>}
           </SizeSection>
 
           <FormSection>
@@ -170,6 +222,7 @@ const PizzaOrderForm = () => {
               <option value="normal">Normal</option>
               <option value="kalın">Kalın</option>
             </Select>
+            {errors.crust && <div style={{ color: "red" }}>{errors.crust}</div>}
           </FormSection>
         </FormSection2>
         <FormSection>
@@ -185,9 +238,16 @@ const PizzaOrderForm = () => {
                 checked={formData.toppings.includes(topping.value)}
                 onChange={handleChange}
                 label={topping.label}
+                disabled={
+                  formData.toppings.length >= 10 &&
+                  !formData.toppings.includes(topping.value)
+                }
               />
             ))}
           </CheckBoxContainer>
+          {errors.toppings && (
+            <div style={{ color: "red" }}>{errors.topping}</div>
+          )}
         </FormSection>
 
         <FormSection>
@@ -207,7 +267,9 @@ const PizzaOrderForm = () => {
               toppings={formData.toppings}
               totalPrice={formData.totalPrice}
               submitButton={
-                <SubmitButton type="submit">SİPARİŞ VER</SubmitButton>
+                <SubmitButton disabled={!isValid} type="submit">
+                  SİPARİŞ VER
+                </SubmitButton>
               }
             />
           </OrderSummary>
