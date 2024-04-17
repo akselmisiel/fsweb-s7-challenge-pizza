@@ -6,8 +6,7 @@ const AdjusterContainer = styled.div`
   align-items: center;
   width: 200px;
   margin: auto;
-  height: 35px;
-  border: 1px solid #333;
+  height: 45px;
 `;
 
 const Button = styled.button`
@@ -19,7 +18,14 @@ const Button = styled.button`
   padding: 0.5rem;
   margin: 0.5rem;
   cursor: pointer;
+  height: 100%;
   justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  &:hover {
+    background-color: #e0a800;
+  }
 `;
 
 const Span = styled.span`

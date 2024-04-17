@@ -17,6 +17,7 @@ import {
   FormSection2,
   SizeSection,
   SummarySection,
+  NameArea,
 } from "./OrderForm.styles.jsx";
 import { Header } from "../components/Header.jsx";
 import Checkbox from "../components/Checkbox.jsx";
@@ -49,6 +50,7 @@ const PizzaOrderForm = () => {
     specialInstructions: "",
     totalPrice: 85,
     amount: 1,
+    name: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -88,6 +90,12 @@ const PizzaOrderForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!isValid) {
+      alert(Object.values(errors).join("\n"));
+      return;
+    }
+
     history.push("/confirm");
     console.log(formData);
     axios
@@ -106,6 +114,7 @@ const PizzaOrderForm = () => {
       specialInstructions: "",
       totalPrice: 85,
       amount: 1,
+      name: "",
     });
   };
 
@@ -120,6 +129,14 @@ const PizzaOrderForm = () => {
       newErrors.crust = "Hamur seçimi zorunludur";
     }
 
+    if (formData.toppings.length < 4) {
+      newErrors.toppings = "En az 4 malzeme seçmelisiniz";
+    }
+
+    if (formData.name.trim().length < 3) {
+      newErrors.name = "İsminiz en az 3 karakter olmalıdır";
+    }
+
     return newErrors;
   };
 
@@ -129,8 +146,7 @@ const PizzaOrderForm = () => {
     const newErrors = validateForm();
     setErrors(newErrors);
     setIsValid(Object.keys(newErrors).length === 0);
-    console.log("errors", errors);
-  }, [formData]);
+  }, [formData.size, formData.crust, formData.toppings, formData.name]);
 
   useEffect(() => {
     let price = formData.price;
@@ -214,10 +230,11 @@ const PizzaOrderForm = () => {
           </SizeSection>
 
           <FormSection>
-            <Label>Hamur Seç *</Label>
+            <SelectionTitle>Hamur Seç *</SelectionTitle>
             <Select name="crust" value={formData.crust} onChange={handleChange}>
-              <option value="">Hamur Seç</option>{" "}
-              {/* !!!Tek seferlik seçilebilir hale getir */}
+              <option value="" disabled={true}>
+                Hamur Seç
+              </option>{" "}
               <option value="ince">İnce</option>
               <option value="normal">Normal</option>
               <option value="kalın">Kalın</option>
@@ -245,9 +262,18 @@ const PizzaOrderForm = () => {
               />
             ))}
           </CheckBoxContainer>
-          {errors.toppings && (
-            <div style={{ color: "red" }}>{errors.topping}</div>
-          )}
+          {errors.toppings && <p style={{ color: "red" }}>{errors.toppings}</p>}
+        </FormSection>
+
+        <FormSection>
+          <Label htmlFor="name">İsminiz:</Label>
+          <NameArea
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
         </FormSection>
 
         <FormSection>
@@ -267,9 +293,7 @@ const PizzaOrderForm = () => {
               toppings={formData.toppings}
               totalPrice={formData.totalPrice}
               submitButton={
-                <SubmitButton disabled={!isValid} type="submit">
-                  SİPARİŞ VER
-                </SubmitButton>
+                <SubmitButton type="submit">SİPARİŞ VER</SubmitButton>
               }
             />
           </OrderSummary>

@@ -17,6 +17,14 @@ export const Price = styled.h1`
   margin-bottom: 0;
 `;
 
+export const NameArea = styled.input`
+  width: 35%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+`;
+
 export const FormTitle = styled.h2`
   color: #333;
   font-family: "Roboto Condensed", sans-serif;
@@ -118,7 +126,7 @@ export const SubmitButton = styled.button`
   text-transform: uppercase;
   width: 100%;
   padding: 1rem;
-  border-radius: 20px;
+  border-radius: 10px;
   &:hover {
     background-color: #e0a800;
   }
@@ -134,7 +142,7 @@ export const OrderSummary = styled.div`
   padding: 0rem 0;
   justify-content: left;
   border: 1px solid #ccc;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-left: auto;
   margin-bottom: 0;
 `;
