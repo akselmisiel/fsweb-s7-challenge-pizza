@@ -4,7 +4,6 @@ import {
   FormTitle,
   FormSection,
   Label,
-  Input,
   Select,
   CheckBoxContainer,
   SubmitButton,
@@ -19,7 +18,6 @@ import {
   SummarySection,
   NameArea,
 } from "./OrderForm.styles.jsx";
-import { Header } from "../components/Header.jsx";
 import Checkbox from "../components/Checkbox.jsx";
 import OrderSummaryCard from "../components/OrderSummaryCard.jsx";
 import OrderAmountAdjuster from "../components/OrderAmount.jsx";
