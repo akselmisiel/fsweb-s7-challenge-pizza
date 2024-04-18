@@ -179,17 +179,17 @@ const PizzaOrderForm = () => {
 
   return (
     <FormContainer>
-      <FormTitle>Position Absolute Acı Pizza</FormTitle>
-      <Price>₺ {formData.totalPrice.toFixed(2)}</Price>
+      <FormTitle data-cy="form-title">Position Absolute Acı Pizza</FormTitle>
+      <Price data-cy="total-price">₺ {formData.totalPrice.toFixed(2)}</Price>
       <FormDescription>
-        Frontent Dev olarak hala position:absolute kullamyorsan bu cok acı pizza
-        tam sana göre. Pizza, domates, peynir ve genellikle çesitli diger
-        malzemelerle kaplanmış, daha sonra geleneksel olarak odun atesinde bir
-        fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzlestirilmis
-        mayall buğday bazlı hamurdan olusan italyan kökenli lezzetli bir
+        Frontent Dev olarak hala position:absolute kullanmıyorsan bu çok acı
+        pizza tam sana göre. Pizza, domates, peynir ve genellikle çesitli diğer
+        malzemelerle kaplanmış, daha sonra geleneksel olarak odun ateşinde bir
+        fırında yüksek sıcaklıkta pişirilen, genellikle yuvarlak, düzleştirilmiş
+        mayalı buğday bazlı hamurdan oluşan italyan kökenli lezzetli bir
         yemektir.. Küçük bir pizzaya bazen pizzetta denir.
       </FormDescription>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-cy="order-form">
         <FormSection2>
           <SizeSection>
             <SelectionTitle>Boyut Seç *</SelectionTitle>
@@ -201,6 +201,7 @@ const PizzaOrderForm = () => {
               value="Küçük"
               checked={formData.size === "Küçük"}
               onChange={handleChange}
+              data-cy="size-small"
             />
             <Label htmlFor="small">Küçük</Label>
             <br></br>
@@ -211,6 +212,7 @@ const PizzaOrderForm = () => {
               value="Orta"
               checked={formData.size === "Orta"}
               onChange={handleChange}
+              data-cy="size-medium"
             />
             <Label htmlFor="medium">Orta</Label>
             <br></br>
@@ -221,15 +223,25 @@ const PizzaOrderForm = () => {
               value="Büyük"
               checked={formData.size === "Büyük"}
               onChange={handleChange}
+              data-cy="size-large"
             />
             <Label htmlFor="big">Büyük</Label>
             <br></br>
-            {errors.size && <div style={{ color: "red" }}>{errors.size}</div>}
+            {errors.size && (
+              <div style={{ color: "red" }} data-cy="error-size">
+                {errors.size}
+              </div>
+            )}
           </SizeSection>
 
           <FormSection>
             <SelectionTitle>Hamur Seç *</SelectionTitle>
-            <Select name="crust" value={formData.crust} onChange={handleChange}>
+            <Select
+              name="crust"
+              value={formData.crust}
+              onChange={handleChange}
+              data-cy="select-crust"
+            >
               <option value="" disabled={true}>
                 Hamur Seç
               </option>{" "}
@@ -237,7 +249,11 @@ const PizzaOrderForm = () => {
               <option value="normal">Normal</option>
               <option value="kalın">Kalın</option>
             </Select>
-            {errors.crust && <div style={{ color: "red" }}>{errors.crust}</div>}
+            {errors.crust && (
+              <div style={{ color: "red" }} data-cy="error-crust">
+                {errors.crust}
+              </div>
+            )}
           </FormSection>
         </FormSection2>
         <FormSection>
@@ -260,7 +276,11 @@ const PizzaOrderForm = () => {
               />
             ))}
           </CheckBoxContainer>
-          {errors.toppings && <p style={{ color: "red" }}>{errors.toppings}</p>}
+          {errors.toppings && (
+            <p style={{ color: "red" }} data-cy="error-toppings">
+              {errors.toppings}
+            </p>
+          )}
         </FormSection>
 
         <FormSection>
@@ -270,8 +290,13 @@ const PizzaOrderForm = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            data-cy="input-name"
           />
-          {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+          {errors.name && (
+            <p style={{ color: "red" }} data-cy="error-name">
+              {errors.name}
+            </p>
+          )}
         </FormSection>
 
         <FormSection>
@@ -291,7 +316,9 @@ const PizzaOrderForm = () => {
               toppings={formData.toppings}
               totalPrice={formData.totalPrice}
               submitButton={
-                <SubmitButton type="submit">SİPARİŞ VER</SubmitButton>
+                <SubmitButton type="submit" data-cy="submit-button">
+                  SİPARİŞ VER
+                </SubmitButton>
               }
             />
           </OrderSummary>
